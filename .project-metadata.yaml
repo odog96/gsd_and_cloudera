@@ -1,0 +1,10 @@
+name: Private Agentic Coding Demo
+description: "Demonstrates 100% private agentic coding inside a Cloudera AI workbench session"
+author: "cdsw"
+date: "2026-04-20"
+specification_version: 1.0
+prototype_version: 1.0
+runtimes:
+  - editor: Workbench
+    kernel: Python 3.10
+    edition: Standard
