@@ -1,5 +1,6 @@
 #!/bin/bash
-# Wrapper to launch GSD against Nemotron 49B on Cloudera AI Inference Service.
+# Loads your API token from token.txt and writes it to GSD's auth config.
+# Run this whenever your token expires, then launch GSD manually.
 #
 # TOKEN SOURCE: Paste your API token from the CAII model endpoint UI into token.txt
 #
@@ -7,6 +8,7 @@
 #   1. Get a fresh token from the CAII model endpoint UI
 #   2. Paste it into token.txt in this repo's root directory
 #   3. Re-run this script
+#   4. Launch GSD: gsd --provider cloudera-ai --model "nvidia/llama-3.3-nemotron-super-49b-v1.5"
 
 set -e
 
@@ -52,5 +54,6 @@ done
 
 export CLOUDERA_AI_API_KEY="$NEW_TOKEN"
 
-echo "[run-gsd] Token loaded. Launching GSD with Nemotron 49B..."
-exec gsd --model "cloudera-ai/nvidia/llama-3.3-nemotron-super-49b-v1.5" "$@"
+echo "[refresh-token] Token loaded. Now run:"
+echo ""
+echo "  gsd --provider cloudera-ai --model \"nvidia/llama-3.3-nemotron-super-49b-v1.5\""

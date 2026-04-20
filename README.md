@@ -67,39 +67,64 @@ npm install -g gsd-pi@latest
 ```
 
 **2. Get your API token**
+
 Open the CAII model endpoint UI and copy your API token. Open `token.txt` in this repo, delete the placeholder, and paste your token in.
 
-**3. Initialize a project directory**
+**3. Load your token**
+
+```bash
+bash refresh-token.sh
+```
+
+This writes your token to GSD's auth config and prints the exact command to launch GSD.
+
+**4. Initialize a project directory**
+
+GSD requires a git repo as its working directory. Create one before launching:
 
 ```bash
 mkdir my-project && cd my-project && git init
 ```
 
-**4. Launch GSD**
+**5. Launch GSD**
 
 ```bash
-bash ~/run-gsd.sh
+gsd --provider cloudera-ai --model "nvidia/llama-3.3-nemotron-super-49b-v1.5"
 ```
+
+When GSD prompts you to sign in, select **"Skip for now"** — auth is handled by the token you loaded in step 3.
+
+When GSD asks about web search, select **"Skip for now"** — no external search is needed.
 
 ## Run a Prompt
 
-Prompts are in the `prompts/` folder. Each is self-contained and designed to complete in a single shot. Start with `attempt-01.md`, then try `attempt-02.md` for a more ambitious demo.
+Prompts are in the `prompts/` folder. Each is self-contained and designed to complete in a single shot.
 
-Copy the prompt block and paste it directly into the GSD session.
+Copy the prompt and paste it directly into the GSD session.
 
 ## Token Refresh
 
-The API token expires after ~1 hour. To refresh:
+The API token expires after ~1 hour. When it expires:
+
 1. Get a new token from the CAII model endpoint UI
 2. Open `token.txt` and replace the old token with the new one
-3. Re-run `bash ~/run-gsd.sh`
+3. Re-run `bash refresh-token.sh`
+4. Re-launch GSD: `gsd --provider cloudera-ai --model "nvidia/llama-3.3-nemotron-super-49b-v1.5"`
+
+If GSD is already running when the token expires, open a second terminal tab, refresh the token, then `Ctrl+C` in the GSD tab and resume with:
+
+```bash
+gsd -c --provider cloudera-ai --model "nvidia/llama-3.3-nemotron-super-49b-v1.5"
+```
+
+The `-c` flag resumes your last session without losing progress.
 
 ## Project Structure
 
 ```
-prompts/          # Self-contained GSD prompts — start here
-run-gsd.sh        # Launcher: loads token, activates Node, starts GSD
-token.txt         # Placeholder — open this file and replace with your real token
+prompts/            # Self-contained GSD prompts — start here
+refresh-token.sh    # Loads token from token.txt into GSD's auth config
+token.txt           # Placeholder — replace with your real token from CAII endpoint UI
 ```
 
-Generated output (patient files, scripts, reports) is created by GSD at runtime and is not tracked in this repo.
+Generated output (scripts, data files, reports) is created by GSD at runtime in your project directory and is not tracked in this repo.
