@@ -54,6 +54,10 @@ done
 
 export CLOUDERA_AI_API_KEY="$NEW_TOKEN"
 
-echo "[refresh-token] Token loaded. Now run:"
+echo "[refresh-token] Token loaded. Next steps:"
 echo ""
-echo "  gsd --provider cloudera-ai --model \"nvidia/llama-3.3-nemotron-super-49b-v1.5\""
+echo "  1. Create and enter a project directory (GSD requires a git repo):"
+echo "     mkdir my-project && cd my-project && git init"
+echo ""
+echo "  2. Launch GSD:"
+echo "     gsd --provider cloudera-ai --model \"nvidia/llama-3.3-nemotron-super-49b-v1.5\""
