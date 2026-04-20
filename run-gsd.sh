@@ -5,7 +5,7 @@
 #
 # Token expires ~1 hour after generation. When it expires:
 #   1. Get a fresh token from the CAII model endpoint UI
-#   2. Paste it into token.txt (or use: nano /home/cdsw/token.txt)
+#   2. Paste it into token.txt in this repo's root directory
 #   3. Re-run this script
 
 set -e
@@ -13,7 +13,7 @@ set -e
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-TOKEN_FILE="/home/cdsw/token.txt"
+TOKEN_FILE="$(cd "$(dirname "$0")" && pwd)/token.txt"
 
 if [ ! -f "$TOKEN_FILE" ]; then
     echo "ERROR: $TOKEN_FILE not found. Paste your CDP/UMS token into that file first."
