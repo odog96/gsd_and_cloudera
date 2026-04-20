@@ -98,9 +98,7 @@ When GSD asks about web search, select **"Skip for now"** — no external search
 
 ## Run a Prompt
 
-Prompts are in the `prompts/` folder. Each is self-contained and designed to complete in a single shot.
-
-Copy the prompt and paste it directly into the GSD session.
+The demo prompt is in `prompt.md`. Copy the prompt block and paste it directly into the GSD session.
 
 ## Token Refresh
 
@@ -122,7 +120,7 @@ The `-c` flag resumes your last session without losing progress.
 ## Project Structure
 
 ```
-prompts/            # Self-contained GSD prompts — start here
+prompt.md           # The demo prompt — paste this into GSD
 refresh-token.sh    # Loads token from token.txt into GSD's auth config
 token.txt           # Placeholder — replace with your real token from CAII endpoint UI
 ```
