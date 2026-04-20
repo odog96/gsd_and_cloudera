@@ -27,6 +27,15 @@ if [ -z "$NEW_TOKEN" ]; then
     exit 1
 fi
 
+PLACEHOLDER="first_remove_this_entire_message_then_place_my_token_here"
+if [ "$NEW_TOKEN" = "$PLACEHOLDER" ]; then
+    echo "ERROR: token.txt still contains the placeholder. Replace it with your real CDP/UMS token from the CAII model endpoint UI."
+    exit 1
+fi
+
+# Protect the real token from accidental git commits on this clone
+git -C "$(dirname "$TOKEN_FILE")" update-index --skip-worktree token.txt 2>/dev/null || true
+
 # Sync token into auth.json for both gsd and pi agent dirs
 for DIR in ~/.gsd/agent ~/.pi/agent; do
     mkdir -p "$DIR"

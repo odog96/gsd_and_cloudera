@@ -1,5 +1,5 @@
-# Secrets — never commit
-token.txt
+# Secrets — never commit real tokens
+# token.txt is intentionally tracked (placeholder only) — real tokens are protected via skip-worktree
 *.token
 
 # Internal session context — not for readers
