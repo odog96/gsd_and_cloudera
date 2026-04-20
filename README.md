@@ -54,25 +54,28 @@ This is early-stage. The goal is not to replicate Claude Code feature-for-featur
 
 - Cloudera AI Workbench session
 - Access to a Nemotron 49B deployment on Cloudera AI Inference Service
-- Node.js 22 (via NVM)
-- GSD v2.73+: `npm install -g gsd-pi@latest`
 
 ## Setup
 
-**1. Get your API token**
-Open the CAII model endpoint UI and copy your API token. Paste it into `token.txt`:
+**1. Install Node.js 22 and GSD** *(one-time per workbench session)*
 
 ```bash
-nano token.txt
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.nvm/nvm.sh
+nvm install 22
+npm install -g gsd-pi@latest
 ```
 
-**2. Initialize a project directory**
+**2. Get your API token**
+Open the CAII model endpoint UI and copy your API token. Open `token.txt` in this repo, delete the placeholder, and paste your token in.
+
+**3. Initialize a project directory**
 
 ```bash
 mkdir my-project && cd my-project && git init
 ```
 
-**3. Launch GSD**
+**4. Launch GSD**
 
 ```bash
 bash ~/run-gsd.sh
@@ -88,7 +91,7 @@ Copy the prompt block and paste it directly into the GSD session.
 
 The API token expires after ~1 hour. To refresh:
 1. Get a new token from the CAII model endpoint UI
-2. Paste it into `token.txt`
+2. Open `token.txt` and replace the old token with the new one
 3. Re-run `bash ~/run-gsd.sh`
 
 ## Project Structure
@@ -96,7 +99,7 @@ The API token expires after ~1 hour. To refresh:
 ```
 prompts/          # Self-contained GSD prompts — start here
 run-gsd.sh        # Launcher: loads token, activates Node, starts GSD
-token.txt         # Your API token — not committed, add to .gitignore
+token.txt         # Placeholder — open this file and replace with your real token
 ```
 
 Generated output (patient files, scripts, reports) is created by GSD at runtime and is not tracked in this repo.
