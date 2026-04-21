@@ -5,14 +5,14 @@ date: "2026-04-20"
 specification_version: 1.0
 prototype_version: 1.0
 runtimes:
-  - editor: Workbench
+  - editor: JupyterLab
     kernel: Python 3.10
     edition: Standard
 
 tasks:
   - type: run_session
     name: Install GSD and Cloudera AI provider
-    script: setup.sh
+    script: setup.py
     short_summary: Install Node.js 22, GSD, and the Cloudera AI provider config
     kernel: python3
     cpu: 2
