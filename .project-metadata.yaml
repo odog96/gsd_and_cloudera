@@ -10,9 +10,10 @@ runtimes:
     edition: Standard
 
 tasks:
-  - type: run_script
+  - type: run_session
+    name: Install GSD and Cloudera AI provider
     script: setup.sh
     short_summary: Install Node.js 22, GSD, and the Cloudera AI provider config
-    kernel: Python 3.10
+    kernel: python3
     cpu: 2
     memory: 4
