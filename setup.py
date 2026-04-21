@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 # setup.py — AMP build-step entry point.
 #
-# AMP run_session tasks invoke the Python kernel, which can't execute
-# shell scripts directly. This wrapper just delegates to setup.sh so
-# all install logic stays in one bash file for manual use.
+# AMP run_session tasks execute this script inside the Python kernel, where
+# __file__ is not always defined. All install logic lives in setup.sh; this
+# wrapper just shells out to it.
 
-import pathlib
+import os
 import subprocess
 import sys
 
-here = pathlib.Path(__file__).resolve().parent
-result = subprocess.run(["bash", str(here / "setup.sh")], cwd=str(here))
+project_dir = os.environ.get("HOME", "/home/cdsw")
+setup_sh = os.path.join(project_dir, "setup.sh")
+
+print(f"[setup.py] running: bash {setup_sh}", flush=True)
+result = subprocess.run(["bash", setup_sh], cwd=project_dir)
+print(f"[setup.py] setup.sh exited with code {result.returncode}", flush=True)
 sys.exit(result.returncode)
