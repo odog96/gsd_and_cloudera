@@ -1,0 +1,25 @@
+{
+  "providers": {
+    "cloudera-ai": {
+      "baseUrl": "CAII_ENDPOINT_URL",
+      "api": "openai-completions",
+      "authHeader": true,
+      "compat": {
+        "supportsDeveloperRole": false,
+        "supportsReasoningEffort": false,
+        "maxTokensField": "max_tokens"
+      },
+      "models": [
+        {
+          "id": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+          "name": "Nemotron 49B (Private CAII)",
+          "reasoning": false,
+          "input": ["text"],
+          "contextWindow": 16384,
+          "maxTokens": 2048,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 }
+        }
+      ]
+    }
+  }
+}

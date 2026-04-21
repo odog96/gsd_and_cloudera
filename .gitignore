@@ -8,6 +8,7 @@ CLAUDE.md
 # Generated output — created by GSD at runtime
 attempt-*/
 archive/
+my-project/
 
 # GSD internals
 .gsd/
